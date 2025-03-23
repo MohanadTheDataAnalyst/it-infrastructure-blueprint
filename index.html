@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IT Infrastructure Blueprint – Startup Edition</title>
+  <title>Comprehensive IT Infrastructure Concept – Startup Edition</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
   <header class="bg-blue-800 text-white py-10 text-center shadow">
-    <h1 class="text-4xl font-bold">IT Infrastructure Blueprint</h1>
+    <h1 class="text-4xl font-bold">Comprehensive IT Infrastructure Blueprint</h1>
     <p class="text-lg mt-2">Tailored for a 20-Employee Tech Startup</p>
   </header>
 
-  <main class="max-w-5xl mx-auto px-6 py-12 space-y-16">
+  <main class="max-w-6xl mx-auto px-6 py-12 space-y-16">
 
     <!-- Section 1: Project Overview -->
     <section>
       <h2 class="text-3xl font-semibold mb-4">1. Project Overview</h2>
-      <p>This document outlines a complete IT infrastructure concept for a startup with 20 employees, covering network architecture, server environment, user and device management, security, backup strategies, monitoring, and cloud integration. The setup also includes a demo lab to showcase technical capabilities.</p>
+      <p>This document outlines a comprehensive IT infrastructure for a startup with 20 employees, including network architecture, physical hardware, virtual infrastructure, cloud integration, device lifecycle management, user access control, security hardening, support, monitoring, and disaster recovery.</p>
     </section>
 
     <!-- Section 2: Network & Infrastructure -->
@@ -26,125 +26,128 @@
 
       <h3 class="text-2xl font-semibold mt-6 mb-2">2.1 Hardware Recommendations</h3>
       <ul class="list-disc pl-6">
-        <li><strong>Router/Firewall:</strong> UniFi Dream Machine Pro – Unified network management, VPN, DPI, security gateway</li>
-        <li><strong>Switch:</strong> Netgear 24-Port PoE+ Smart Managed Switch – VLAN capable, PoE for Access Points</li>
-        <li><strong>Access Points:</strong> UniFi 6 Lite – Enterprise Wi-Fi 6 with seamless roaming</li>
-        <li><strong>Server:</strong> Dell PowerEdge with Windows Server 2022 – Active Directory, DNS, DHCP, file services</li>
-        <li><strong>NAS:</strong> Synology DS920+ – Local backup, file storage with RAID protection</li>
-        <li><strong>UPS:</strong> APC Smart-UPS – Backup power for critical systems</li>
+        <li><strong>Router/Firewall:</strong> UniFi Dream Machine Pro – Integrated network controller, firewall, DPI, VPN</li>
+        <li><strong>Switch:</strong> Netgear GS728TP – 24-port managed PoE+ switch with VLAN and link aggregation</li>
+        <li><strong>Access Points:</strong> UniFi 6 LR – Long-range Wi-Fi 6 for strong coverage</li>
+        <li><strong>Server:</strong> Dell PowerEdge R550 with RAID 5, 128 GB RAM, dual Xeon</li>
+        <li><strong>NAS:</strong> Synology RS1221+ – Central backup with Btrfs snapshots and cloud sync</li>
+        <li><strong>UPS:</strong> APC Smart-UPS with SNMP monitoring module</li>
+        <li><strong>Patch Panel + Rack:</strong> 12U rack cabinet for central structured cabling</li>
       </ul>
 
-      <h3 class="text-2xl font-semibold mt-6 mb-2">2.2 Network Design & VLANs</h3>
+      <h3 class="text-2xl font-semibold mt-6 mb-2">2.2 Network Design</h3>
       <ul class="list-disc pl-6">
-        <li>VLAN 10 – Office LAN: Employee PCs, laptops</li>
-        <li>VLAN 20 – Servers: Server + NAS</li>
+        <li>VLAN 10 – Employee LAN: Workstations, laptops</li>
+        <li>VLAN 20 – Servers: AD, File Server, DNS/DHCP</li>
         <li>VLAN 30 – Printers & VoIP phones</li>
-        <li>VLAN 40 – Guest Wi-Fi: Internet access only</li>
+        <li>VLAN 40 – Guest Wi-Fi: Isolated internet access</li>
+        <li>VLAN 50 – Management: Admin access and monitoring tools</li>
       </ul>
 
-      <h3 class="text-2xl font-semibold mt-6 mb-2">2.3 IP Addressing & DHCP</h3>
-      <p>Each VLAN uses a separate subnet (e.g., 192.168.10.0/24). DHCP is managed by the Windows Server for internal devices and by the router for guests.</p>
+      <h3 class="text-2xl font-semibold mt-6 mb-2">2.3 IP Addressing</h3>
+      <p>Private addressing scheme with static IPs for infrastructure, DHCP ranges per VLAN, reverse DNS zones configured.</p>
 
-      <h3 class="text-2xl font-semibold mt-6 mb-2">2.4 Wireless Configuration</h3>
+      <h3 class="text-2xl font-semibold mt-6 mb-2">2.4 DNS & DHCP</h3>
       <ul class="list-disc pl-6">
-        <li>SSID 1: Startup-Office – WPA3, VLAN 10</li>
-        <li>SSID 2: Startup-Guest – VLAN 40, isolated</li>
+        <li>Primary DNS/DHCP via Windows Server 2022</li>
+        <li>Redundant DHCP failover scope</li>
+        <li>Conditional forwarders and split-brain DNS</li>
+      </ul>
+
+      <h3 class="text-2xl font-semibold mt-6 mb-2">2.5 Cabling & Wi-Fi</h3>
+      <ul class="list-disc pl-6">
+        <li>Cat6 cabling to every desk with wall-mounted faceplates</li>
+        <li>Ceiling-mounted APs with PoE</li>
+        <li>SSID Startup-Office (WPA3, VLAN 10), Startup-Guest (VLAN 40)</li>
       </ul>
     </section>
 
-    <!-- Section 3: Client & Device Management -->
+    <!-- Section 3: Virtualization & Server Roles -->
     <section>
-      <h2 class="text-3xl font-semibold mb-4">3. Client & Device Management</h2>
-
-      <h3 class="text-2xl font-semibold mt-4 mb-2">3.1 Standards & Software</h3>
+      <h2 class="text-3xl font-semibold mb-4">3. Virtualization & Server Roles</h2>
       <ul class="list-disc pl-6">
-        <li>Windows 11 Pro on all workstations</li>
-        <li>Standard apps: Microsoft 365, Zoom, PDF Reader, browser</li>
-      </ul>
-
-      <h3 class="text-2xl font-semibold mt-4 mb-2">3.2 Updates & Endpoint Security</h3>
-      <ul class="list-disc pl-6">
-        <li>Windows updates managed via WSUS</li>
-        <li>BitLocker enforced via GPO</li>
-        <li>Device lockdown: BIOS protection, USB port control</li>
-      </ul>
-
-      <h3 class="text-2xl font-semibold mt-4 mb-2">3.3 Software Deployment</h3>
-      <ul class="list-disc pl-6">
-        <li>GPO-based MSI installations</li>
-        <li>PowerShell scripts for onboarding</li>
-        <li>Optional: Intune integration for mobile/hybrid users</li>
+        <li>Hypervisor: VMware ESXi or Hyper-V Core</li>
+        <li>VM1 – Domain Controller + DNS/DHCP</li>
+        <li>VM2 – File Server with quota management and shadow copies</li>
+        <li>VM3 – Monitoring/Logging Server (Graylog, PRTG)</li>
+        <li>VM4 – Remote Desktop Gateway (optional)</li>
       </ul>
     </section>
 
-    <!-- Section 4: Access Management -->
+    <!-- Section 4: Client Lifecycle & Configuration -->
     <section>
-      <h2 class="text-3xl font-semibold mb-4">4. Access & Permissions</h2>
-      <p>Centralized user and group management with Active Directory, structured by department:</p>
-      <pre class="bg-gray-100 p-4 rounded overflow-x-auto mt-4 text-sm">
-OU=Company
-├── OU=Sales
-├── OU=Marketing
-├── OU=IT
-└── OU=Management
-      </pre>
-      <ul class="list-disc pl-6 mt-4">
-        <li>Role-based access with Security Groups (e.g., SG_Marketing_RW)</li>
-        <li>Shared drives and printer mapping via GPO</li>
-        <li>Login scripts for drive mapping and settings</li>
-      </ul>
-    </section>
-
-    <!-- Section 5: Backup & Cybersecurity -->
-    <section>
-      <h2 class="text-3xl font-semibold mb-4">5. Backup & Cybersecurity</h2>
+      <h2 class="text-3xl font-semibold mb-4">4. Client Lifecycle Management</h2>
       <ul class="list-disc pl-6">
-        <li>3-2-1 backup strategy: NAS + encrypted cloud + offline copy</li>
-        <li>Daily differential + weekly full backups</li>
-        <li>Firewall with intrusion detection and DPI</li>
-        <li>MFA for Microsoft 365 and VPN</li>
-        <li>User training: phishing simulations, password policy enforcement</li>
+        <li>Standard Image Deployment via MDT or Autopilot</li>
+        <li>GPO hardening: USB blocking, BitLocker enforcement, AppLocker</li>
+        <li>Intune enrollment for remote/hybrid devices</li>
+        <li>Remote wipe for lost/stolen devices</li>
+        <li>Software: M365, Zoom, Notepad++, VPN Client</li>
       </ul>
     </section>
 
-    <!-- Section 6: Support & Monitoring -->
+    <!-- Section 5: Identity & Access Management -->
     <section>
-      <h2 class="text-3xl font-semibold mb-4">6. Support & Monitoring</h2>
+      <h2 class="text-3xl font-semibold mb-4">5. Identity & Access Management</h2>
       <ul class="list-disc pl-6">
-        <li>Helpdesk: GLPI or Spiceworks</li>
-        <li>Remote support: AnyDesk or RDP</li>
-        <li>Monitoring: PRTG Network Monitor</li>
-        <li>Alert rules: CPU > 90%, Disk space < 20%, Service failures</li>
+        <li>Organizational Units per department</li>
+        <li>Group-based access control (least privilege)</li>
+        <li>Login script for drive/printer mapping</li>
+        <li>Azure AD Hybrid Join for cloud access</li>
+        <li>MFA with conditional access (geo, risk, device)</li>
       </ul>
     </section>
 
-    <!-- Section 7: Demo Environment -->
+    <!-- Section 6: Backup, Security & Compliance -->
     <section>
-      <h2 class="text-3xl font-semibold mb-4">7. Demo Lab Setup</h2>
+      <h2 class="text-3xl font-semibold mb-4">6. Backup, Security & Compliance</h2>
       <ul class="list-disc pl-6">
-        <li>Parallels VM with Windows Server 2022</li>
-        <li>Active Directory with OUs and GPOs</li>
-        <li>Client VM (Windows 11) joined to domain</li>
-        <li>Test GPOs for desktop config and security</li>
+        <li>Veeam Backup to local NAS + encrypted cloud (Backblaze B2 or Azure)</li>
+        <li>Backup test restores monthly (sample file + full system)</li>
+        <li>Firewall rules per VLAN, IDS/IPS enabled</li>
+        <li>Security awareness training quarterly</li>
+        <li>Compliance: GDPR checklist, audit trails via Sysmon</li>
       </ul>
     </section>
 
-    <!-- Section 8: Cloud & Remote Work -->
+    <!-- Section 7: Monitoring & Support -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">7. Monitoring & IT Support</h2>
+      <ul class="list-disc pl-6">
+        <li>PRTG for uptime, SNMP, traffic, AD/SQL checks</li>
+        <li>Graylog or ELK for log aggregation</li>
+        <li>Ticketing via GLPI or Freshdesk</li>
+        <li>Self-service password reset portal</li>
+        <li>IT Wiki using BookStack or Confluence</li>
+      </ul>
+    </section>
+
+    <!-- Section 8: Cloud Services & Remote Work -->
     <section>
       <h2 class="text-3xl font-semibold mb-4">8. Cloud & Remote Work</h2>
       <ul class="list-disc pl-6">
-        <li>Microsoft 365: Teams, OneDrive, Outlook</li>
-        <li>Azure AD Sync from local AD</li>
-        <li>VPN via UniFi Gateway</li>
-        <li>Mobile Device Management with Intune</li>
-        <li>Cloud backup via Synology C2 / Azure Backup</li>
+        <li>Microsoft 365 E3 Plan for all users</li>
+        <li>Azure AD + Intune + Defender for Endpoint</li>
+        <li>VPN access with MFA (WireGuard or L2TP/IPSec)</li>
+        <li>File access via OneDrive and mapped SharePoint drives</li>
       </ul>
     </section>
 
-    <!-- Section 9: Summary & Outlook -->
+    <!-- Section 9: Demo Lab Setup -->
     <section>
-      <h2 class="text-3xl font-semibold mb-4">9. Summary & Outlook</h2>
-      <p>This infrastructure provides a secure, centralized, and scalable setup for a modern startup. Future additions could include VoIP rollout, hybrid cloud architecture, automated onboarding, and zero-trust network enhancements.</p>
+      <h2 class="text-3xl font-semibold mb-4">9. Demo Lab Environment</h2>
+      <ul class="list-disc pl-6">
+        <li>Parallels Desktop on Mac M1 with nested virtualization</li>
+        <li>1x DC VM (Windows Server 2022), 1x Client VM (Win 11)</li>
+        <li>Test OU, GPOs: Drive mapping, desktop lock, AppLocker</li>
+        <li>Simulation of login flow, password reset, Intune registration</li>
+      </ul>
+    </section>
+
+    <!-- Section 10: Summary & Future Outlook -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">10. Summary & Outlook</h2>
+      <p>This IT blueprint ensures security, scalability, compliance, and flexibility for a modern, cloud-integrated startup. It sets the foundation for DevOps, automation, and high-availability in the future.</p>
     </section>
 
   </main>
