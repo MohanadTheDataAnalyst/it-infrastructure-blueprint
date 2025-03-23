@@ -24,27 +24,49 @@
     <!-- Network & Infrastructure -->
     <section>
       <h2 class="text-2xl font-bold mb-4">2. Network & Infrastructure</h2>
+      <p class="mb-4">
+        The network infrastructure is designed to support high performance, security, and scalability. It consists of enterprise-grade components configured in a segmented VLAN structure to isolate traffic between users, services, and guests.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-2">2.1 Recommended Hardware</h3>
       <ul class="list-disc pl-6 space-y-1">
-        <li><strong>Router:</strong> Ubiquiti UniFi Dream Machine Pro</li>
-        <li><strong>Switch:</strong> Netgear Smart Managed Switch (PoE-enabled)</li>
-        <li><strong>Access Points:</strong> Ubiquiti UniFi 6 Lite (2–3 units)</li>
-        <li><strong>Server:</strong> Windows Server 2022 (AD, DNS, DHCP, File Services)</li>
-        <li><strong>NAS:</strong> Synology DS920+ for backup and file storage</li>
-        <li><strong>UPS:</strong> Optional for power redundancy</li>
+        <li><strong>Router & Firewall:</strong> Ubiquiti UniFi Dream Machine Pro – All-in-one gateway with integrated security, VPN, DPI, and cloud management.</li>
+        <li><strong>Switches:</strong> Netgear Smart Managed Switches (24-port, PoE+) – VLAN-capable, Power over Ethernet for access points and IP phones.</li>
+        <li><strong>Access Points:</strong> Ubiquiti UniFi 6 Lite (x3) – High-performance Wi-Fi 6 coverage across all office zones.</li>
+        <li><strong>Server:</strong> One physical server with Windows Server 2022 – Provides Active Directory, DNS, DHCP, and file services.</li>
+        <li><strong>Storage:</strong> Synology NAS (DS920+) – Used for local backups and shared file access with RAID configuration.</li>
+        <li><strong>Power Backup:</strong> APC Smart-UPS – Protects critical hardware during power outages.</li>
+        <li><strong>Patch Panel & Rack:</strong> For structured cabling and maintenance-friendly setup.</li>
       </ul>
 
-      <h3 class="text-xl font-semibold mt-6 mb-2">Network Structure</h3>
+      <h3 class="text-xl font-semibold mt-6 mb-2">2.2 Network Structure & VLANs</h3>
+      <p class="mb-2">To increase network efficiency and security, VLAN segmentation is implemented. Each type of traffic is separated logically at the switch level:</p>
       <ul class="list-disc pl-6 space-y-1">
-        <li>VLAN 10: Office LAN (workstations)</li>
-        <li>VLAN 20: Servers</li>
-        <li>VLAN 30: VoIP and printers</li>
-        <li>VLAN 40: Guest Wi-Fi (isolated internet-only)</li>
-        <li>WLAN SSIDs: "Startup-Office" (internal) & "Startup-Guest" (guest access)</li>
+        <li><strong>VLAN 10 – Office LAN:</strong> For all employee client devices (PCs, laptops).</li>
+        <li><strong>VLAN 20 – Servers:</strong> Dedicated to Windows Server and NAS.</li>
+        <li><strong>VLAN 30 – VoIP & Printers:</strong> Isolated network for printers and IP phones.</li>
+        <li><strong>VLAN 40 – Guest Wi-Fi:</strong> Internet-only access for visitors, no internal resource access.</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-6 mb-2">2.3 Wireless Network</h3>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>SSID 1 – Startup-Office:</strong> WPA3-encrypted, connected to VLAN 10 for employees.</li>
+        <li><strong>SSID 2 – Startup-Guest:</strong> Isolated VLAN 40 network with internet access only.</li>
+        <li>Controller-based wireless management via UniFi Controller for centralized monitoring and configuration.</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-6 mb-2">2.4 IP Addressing & DHCP</h3>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>IP schema follows private addressing (e.g., 192.168.10.0/24 for VLAN 10, etc.).</li>
+        <li>DHCP provided centrally via Windows Server 2022.</li>
+        <li>DNS internal resolution for domain and services; external DNS via router fallback.</li>
       </ul>
 
       <h3 class="text-xl font-semibold mt-6 mb-2">Network Diagram</h3>
-      <img src="https://i.imgur.com/nHspoyJ.png" alt="Network Diagram" class="w-full rounded-lg shadow-md">
-      <p class="text-sm text-gray-500 mt-2">*Illustrative diagram of VLAN-based infrastructure with core components.</p>
+      <div class="bg-white p-4 border rounded shadow">
+        <p class="text-sm text-gray-500 mb-2">(Placeholder for network diagram – replace with actual image or link to hosted diagram)</p>
+        <img src="https://via.placeholder.com/800x400?text=Network+Diagram" alt="Network Diagram" class="w-full rounded-lg shadow-md">
+      </div>
     </section>
 
     <!-- Client Management -->
