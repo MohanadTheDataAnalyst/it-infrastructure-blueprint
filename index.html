@@ -3,72 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IT Infrastructure Blueprint</title>
+  <title>IT Infrastructure Blueprint – Startup Edition</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-  <header class="bg-blue-900 text-white py-8 text-center">
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <header class="bg-blue-800 text-white py-10 text-center shadow">
     <h1 class="text-4xl font-bold">IT Infrastructure Blueprint</h1>
-    <p class="text-xl mt-2">for a Startup with 20 Employees</p>
+    <p class="text-lg mt-2">Tailored for a 20-Employee Tech Startup</p>
   </header>
 
-  <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
-    <!-- Introduction -->
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-16">
+
+    <!-- Section 1: Project Overview -->
     <section>
-      <h2 class="text-2xl font-bold mb-4">1. Project Overview</h2>
-      <p>
-        This virtual IT infrastructure test environment simulates a complete startup network setup using Windows Server 2022, Active Directory, DNS/DHCP, VLANs, and Group Policies. It is built on a Mac M1 using Parallels Desktop to demonstrate technical understanding and practical implementation.
-      </p>
+      <h2 class="text-3xl font-semibold mb-4">1. Project Overview</h2>
+      <p>This document outlines a complete IT infrastructure concept for a startup with 20 employees, covering network architecture, server environment, user and device management, security, backup strategies, monitoring, and cloud integration. The setup also includes a demo lab to showcase technical capabilities.</p>
     </section>
 
-    <!-- Network & Infrastructure -->
-    <!-- ... (Bereits enthalten) ... -->
-
-    <!-- Demo Environment -->
+    <!-- Section 2: Network & Infrastructure -->
     <section>
-      <h2 class="text-2xl font-bold mb-4">7. Demo Environment</h2>
-      <p class="mb-2">
-        A fully functional demo lab has been set up on a Mac M1 using Parallels Desktop with Windows Server 2022. It includes:
-      </p>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>AD DS installation and domain configuration</li>
-        <li>Sample OUs and user accounts</li>
-        <li>GPOs for desktop wallpaper and password policy</li>
-        <li>Optional: Windows 11 VM joined to the domain</li>
+      <h2 class="text-3xl font-semibold mb-4">2. Network & Infrastructure</h2>
+
+      <h3 class="text-2xl font-semibold mt-6 mb-2">2.1 Hardware Recommendations</h3>
+      <ul class="list-disc pl-6">
+        <li><strong>Router/Firewall:</strong> UniFi Dream Machine Pro – Unified network management, VPN, DPI, security gateway</li>
+        <li><strong>Switch:</strong> Netgear 24-Port PoE+ Smart Managed Switch – VLAN capable, PoE for Access Points</li>
+        <li><strong>Access Points:</strong> UniFi 6 Lite – Enterprise Wi-Fi 6 with seamless roaming</li>
+        <li><strong>Server:</strong> Dell PowerEdge with Windows Server 2022 – Active Directory, DNS, DHCP, file services</li>
+        <li><strong>NAS:</strong> Synology DS920+ – Local backup, file storage with RAID protection</li>
+        <li><strong>UPS:</strong> APC Smart-UPS – Backup power for critical systems</li>
       </ul>
-      <p class="mt-4">Screenshots and videos available upon request or during presentation.</p>
-    </section>
 
-    <!-- Cloud & Remote Work (Optional) -->
-    <section>
-      <h2 class="text-2xl font-bold mb-4">8. Cloud & Remote Work</h2>
-      <p class="mb-4">
-        As a modern startup, integrating cloud-based services and remote work tools enhances flexibility, scalability, and collaboration. The infrastructure supports hybrid and remote teams using Microsoft 365 and optional Azure services.
-      </p>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>Microsoft 365: Includes Teams, OneDrive, Exchange Online for collaboration</li>
-        <li>Azure AD Sync: Option to extend local AD to Azure Active Directory</li>
-        <li>Conditional Access Policies for secure remote access</li>
-        <li>Mobile Device Management (MDM) with Microsoft Intune</li>
-        <li>Cloud backups for critical business data (e.g., Synology C2, Azure Backup)</li>
-        <li>VPN access configured via UniFi Gateway with user-based access control</li>
+      <h3 class="text-2xl font-semibold mt-6 mb-2">2.2 Network Design & VLANs</h3>
+      <ul class="list-disc pl-6">
+        <li>VLAN 10 – Office LAN: Employee PCs, laptops</li>
+        <li>VLAN 20 – Servers: Server + NAS</li>
+        <li>VLAN 30 – Printers & VoIP phones</li>
+        <li>VLAN 40 – Guest Wi-Fi: Internet access only</li>
+      </ul>
+
+      <h3 class="text-2xl font-semibold mt-6 mb-2">2.3 IP Addressing & DHCP</h3>
+      <p>Each VLAN uses a separate subnet (e.g., 192.168.10.0/24). DHCP is managed by the Windows Server for internal devices and by the router for guests.</p>
+
+      <h3 class="text-2xl font-semibold mt-6 mb-2">2.4 Wireless Configuration</h3>
+      <ul class="list-disc pl-6">
+        <li>SSID 1: Startup-Office – WPA3, VLAN 10</li>
+        <li>SSID 2: Startup-Guest – VLAN 40, isolated</li>
       </ul>
     </section>
 
-    <!-- Summary -->
+    <!-- Section 3: Client & Device Management -->
     <section>
-      <h2 class="text-2xl font-bold mb-4">9. Summary & Outlook</h2>
-      <p>
-        This IT infrastructure blueprint provides a scalable, secure, and modern foundation for a startup with 20 employees. With structured network segmentation, centralized management, proactive monitoring, and cloud integration, the company is well-prepared for growth, remote work, and operational continuity.
-      </p>
-      <p class="mt-2">
-        Future expansions could include advanced automation (e.g., scripting, onboarding workflows), expanded Azure services, VoIP integration, and further security hardening.
-      </p>
+      <h2 class="text-3xl font-semibold mb-4">3. Client & Device Management</h2>
+
+      <h3 class="text-2xl font-semibold mt-4 mb-2">3.1 Standards & Software</h3>
+      <ul class="list-disc pl-6">
+        <li>Windows 11 Pro on all workstations</li>
+        <li>Standard apps: Microsoft 365, Zoom, PDF Reader, browser</li>
+      </ul>
+
+      <h3 class="text-2xl font-semibold mt-4 mb-2">3.2 Updates & Endpoint Security</h3>
+      <ul class="list-disc pl-6">
+        <li>Windows updates managed via WSUS</li>
+        <li>BitLocker enforced via GPO</li>
+        <li>Device lockdown: BIOS protection, USB port control</li>
+      </ul>
+
+      <h3 class="text-2xl font-semibold mt-4 mb-2">3.3 Software Deployment</h3>
+      <ul class="list-disc pl-6">
+        <li>GPO-based MSI installations</li>
+        <li>PowerShell scripts for onboarding</li>
+        <li>Optional: Intune integration for mobile/hybrid users</li>
+      </ul>
     </section>
+
+    <!-- Section 4: Access Management -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">4. Access & Permissions</h2>
+      <p>Centralized user and group management with Active Directory, structured by department:</p>
+      <pre class="bg-gray-100 p-4 rounded overflow-x-auto mt-4 text-sm">
+OU=Company
+├── OU=Sales
+├── OU=Marketing
+├── OU=IT
+└── OU=Management
+      </pre>
+      <ul class="list-disc pl-6 mt-4">
+        <li>Role-based access with Security Groups (e.g., SG_Marketing_RW)</li>
+        <li>Shared drives and printer mapping via GPO</li>
+        <li>Login scripts for drive mapping and settings</li>
+      </ul>
+    </section>
+
+    <!-- Section 5: Backup & Cybersecurity -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">5. Backup & Cybersecurity</h2>
+      <ul class="list-disc pl-6">
+        <li>3-2-1 backup strategy: NAS + encrypted cloud + offline copy</li>
+        <li>Daily differential + weekly full backups</li>
+        <li>Firewall with intrusion detection and DPI</li>
+        <li>MFA for Microsoft 365 and VPN</li>
+        <li>User training: phishing simulations, password policy enforcement</li>
+      </ul>
+    </section>
+
+    <!-- Section 6: Support & Monitoring -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">6. Support & Monitoring</h2>
+      <ul class="list-disc pl-6">
+        <li>Helpdesk: GLPI or Spiceworks</li>
+        <li>Remote support: AnyDesk or RDP</li>
+        <li>Monitoring: PRTG Network Monitor</li>
+        <li>Alert rules: CPU > 90%, Disk space < 20%, Service failures</li>
+      </ul>
+    </section>
+
+    <!-- Section 7: Demo Environment -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">7. Demo Lab Setup</h2>
+      <ul class="list-disc pl-6">
+        <li>Parallels VM with Windows Server 2022</li>
+        <li>Active Directory with OUs and GPOs</li>
+        <li>Client VM (Windows 11) joined to domain</li>
+        <li>Test GPOs for desktop config and security</li>
+      </ul>
+    </section>
+
+    <!-- Section 8: Cloud & Remote Work -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">8. Cloud & Remote Work</h2>
+      <ul class="list-disc pl-6">
+        <li>Microsoft 365: Teams, OneDrive, Outlook</li>
+        <li>Azure AD Sync from local AD</li>
+        <li>VPN via UniFi Gateway</li>
+        <li>Mobile Device Management with Intune</li>
+        <li>Cloud backup via Synology C2 / Azure Backup</li>
+      </ul>
+    </section>
+
+    <!-- Section 9: Summary & Outlook -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">9. Summary & Outlook</h2>
+      <p>This infrastructure provides a secure, centralized, and scalable setup for a modern startup. Future additions could include VoIP rollout, hybrid cloud architecture, automated onboarding, and zero-trust network enhancements.</p>
+    </section>
+
   </main>
 
-  <footer class="bg-gray-200 text-center py-6 mt-10">
-    <p class="text-sm">Created by Mohammed Al-Abiad – Junior IT System Administrator</p>
+  <footer class="bg-gray-200 text-center py-6 text-sm">
+    Created by Mohammed Al-Abiad – Junior IT System Administrator
   </footer>
 </body>
 </html>
