@@ -22,110 +22,7 @@
     </section>
 
     <!-- Network & Infrastructure -->
-    <section>
-      <h2 class="text-2xl font-bold mb-4">2. Network & Infrastructure</h2>
-      <p class="mb-4">
-        The network infrastructure is designed to support high performance, security, and scalability. It consists of enterprise-grade components configured in a segmented VLAN structure to isolate traffic between users, services, and guests.
-      </p>
-
-      <h3 class="text-xl font-semibold mb-2">2.1 Recommended Hardware</h3>
-      <ul class="list-disc pl-6 space-y-1">
-        <li><strong>Router & Firewall:</strong> Ubiquiti UniFi Dream Machine Pro – All-in-one gateway with integrated security, VPN, DPI, and cloud management.</li>
-        <li><strong>Switches:</strong> Netgear Smart Managed Switches (24-port, PoE+) – VLAN-capable, Power over Ethernet for access points and IP phones.</li>
-        <li><strong>Access Points:</strong> Ubiquiti UniFi 6 Lite (x3) – High-performance Wi-Fi 6 coverage across all office zones.</li>
-        <li><strong>Server:</strong> One physical server with Windows Server 2022 – Provides Active Directory, DNS, DHCP, and file services.</li>
-        <li><strong>Storage:</strong> Synology NAS (DS920+) – Used for local backups and shared file access with RAID configuration.</li>
-        <li><strong>Power Backup:</strong> APC Smart-UPS – Protects critical hardware during power outages.</li>
-        <li><strong>Patch Panel & Rack:</strong> For structured cabling and maintenance-friendly setup.</li>
-      </ul>
-
-      <h3 class="text-xl font-semibold mt-6 mb-2">2.2 Network Structure & VLANs</h3>
-      <p class="mb-2">To increase network efficiency and security, VLAN segmentation is implemented. Each type of traffic is separated logically at the switch level:</p>
-      <ul class="list-disc pl-6 space-y-1">
-        <li><strong>VLAN 10 – Office LAN:</strong> For all employee client devices (PCs, laptops).</li>
-        <li><strong>VLAN 20 – Servers:</strong> Dedicated to Windows Server and NAS.</li>
-        <li><strong>VLAN 30 – VoIP & Printers:</strong> Isolated network for printers and IP phones.</li>
-        <li><strong>VLAN 40 – Guest Wi-Fi:</strong> Internet-only access for visitors, no internal resource access.</li>
-      </ul>
-
-      <h3 class="text-xl font-semibold mt-6 mb-2">2.3 Wireless Network</h3>
-      <ul class="list-disc pl-6 space-y-1">
-        <li><strong>SSID 1 – Startup-Office:</strong> WPA3-encrypted, connected to VLAN 10 for employees.</li>
-        <li><strong>SSID 2 – Startup-Guest:</strong> Isolated VLAN 40 network with internet access only.</li>
-        <li>Controller-based wireless management via UniFi Controller for centralized monitoring and configuration.</li>
-      </ul>
-
-      <h3 class="text-xl font-semibold mt-6 mb-2">2.4 IP Addressing & DHCP</h3>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>IP schema follows private addressing (e.g., 192.168.10.0/24 for VLAN 10, etc.).</li>
-        <li>DHCP provided centrally via Windows Server 2022.</li>
-        <li>DNS internal resolution for domain and services; external DNS via router fallback.</li>
-      </ul>
-
-      <h3 class="text-xl font-semibold mt-6 mb-2">Network Diagram</h3>
-      <div class="bg-white p-4 border rounded shadow">
-        <p class="text-sm text-gray-500 mb-2">(Placeholder for network diagram – replace with actual image or link to hosted diagram)</p>
-        <img src="https://via.placeholder.com/800x400?text=Network+Diagram" alt="Network Diagram" class="w-full rounded-lg shadow-md">
-      </div>
-    </section>
-
-    <!-- Client Management -->
-    <section>
-      <h2 class="text-2xl font-bold mb-4">3. Client Management</h2>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>OS: Windows 11 Pro, domain-joined</li>
-        <li>Standard Software: Microsoft 365, antivirus, PDF reader</li>
-        <li>Security: BitLocker encryption, automatic updates via WSUS/Intune</li>
-        <li>Software deployment via GPO or Microsoft Intune</li>
-      </ul>
-    </section>
-
-    <!-- Access Control -->
-    <section>
-      <h2 class="text-2xl font-bold mb-4">4. Access & Permissions</h2>
-      <p class="mb-4">
-        Users and groups are centrally managed via Active Directory. The organizational structure is reflected in Organizational Units (OUs) such as Sales, Marketing, IT, and Management. Each department has its own group policies and access rules.
-      </p>
-      <h3 class="text-xl font-semibold mb-2">OU Structure Example:</h3>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>OU=Company</li>
-        <li> ├── OU=Sales</li>
-        <li> ├── OU=Marketing</li>
-        <li> ├── OU=IT</li>
-        <li> └── OU=Management</li>
-      </ul>
-      <h3 class="text-xl font-semibold mt-4 mb-2">Permission Management:</h3>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>Shared folders mapped via GPO per department</li>
-        <li>Access based on security groups (e.g., SG_Sales_Read, SG_IT_Admin)</li>
-        <li>GPOs for desktop restrictions, software policies, login scripts</li>
-      </ul>
-    </section>
-
-    <!-- Security & Backup -->
-    <section>
-      <h2 class="text-2xl font-bold mb-4">5. Backup & Cybersecurity</h2>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>Backup strategy: 3-2-1 rule (3 copies, 2 media types, 1 off-site)</li>
-        <li>Use of Synology NAS + encrypted cloud storage (e.g., Wasabi, Azure)</li>
-        <li>Automated daily and weekly backup schedules</li>
-        <li>Firewall with DPI, intrusion detection, and threat alerts</li>
-        <li>Company-wide MFA, strong password policies, regular security training</li>
-        <li>BitLocker for all endpoints, secure BIOS/UEFI settings</li>
-      </ul>
-    </section>
-
-    <!-- Monitoring -->
-    <section>
-      <h2 class="text-2xl font-bold mb-4">6. Support & Monitoring</h2>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>IT helpdesk: GLPI or Spiceworks for ticket management</li>
-        <li>Remote access with AnyDesk or Microsoft Remote Desktop</li>
-        <li>Monitoring: PRTG Network Monitor for network/server performance</li>
-        <li>Log collection: Windows Event Viewer + centralized syslog</li>
-        <li>Automated alerts for CPU, disk, memory, and uptime issues</li>
-      </ul>
-    </section>
+    <!-- ... (Bereits enthalten) ... -->
 
     <!-- Demo Environment -->
     <section>
@@ -140,6 +37,33 @@
         <li>Optional: Windows 11 VM joined to the domain</li>
       </ul>
       <p class="mt-4">Screenshots and videos available upon request or during presentation.</p>
+    </section>
+
+    <!-- Cloud & Remote Work (Optional) -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">8. Cloud & Remote Work</h2>
+      <p class="mb-4">
+        As a modern startup, integrating cloud-based services and remote work tools enhances flexibility, scalability, and collaboration. The infrastructure supports hybrid and remote teams using Microsoft 365 and optional Azure services.
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Microsoft 365: Includes Teams, OneDrive, Exchange Online for collaboration</li>
+        <li>Azure AD Sync: Option to extend local AD to Azure Active Directory</li>
+        <li>Conditional Access Policies for secure remote access</li>
+        <li>Mobile Device Management (MDM) with Microsoft Intune</li>
+        <li>Cloud backups for critical business data (e.g., Synology C2, Azure Backup)</li>
+        <li>VPN access configured via UniFi Gateway with user-based access control</li>
+      </ul>
+    </section>
+
+    <!-- Summary -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">9. Summary & Outlook</h2>
+      <p>
+        This IT infrastructure blueprint provides a scalable, secure, and modern foundation for a startup with 20 employees. With structured network segmentation, centralized management, proactive monitoring, and cloud integration, the company is well-prepared for growth, remote work, and operational continuity.
+      </p>
+      <p class="mt-2">
+        Future expansions could include advanced automation (e.g., scripting, onboarding workflows), expanded Azure services, VoIP integration, and further security hardening.
+      </p>
     </section>
   </main>
 
