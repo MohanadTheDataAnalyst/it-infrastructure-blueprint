@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT Infrastructure Blueprint</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <header class="bg-blue-900 text-white py-8 text-center">
+    <h1 class="text-4xl font-bold">IT Infrastructure Blueprint</h1>
+    <p class="text-xl mt-2">for a Startup with 20 Employees</p>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
+    <!-- Introduction -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">1. Project Overview</h2>
+      <p>
+        This virtual IT infrastructure test environment simulates a complete startup network setup using Windows Server 2022, Active Directory, DNS/DHCP, VLANs, and Group Policies. It is built on a Mac M1 using Parallels Desktop to demonstrate technical understanding and practical implementation.
+      </p>
+    </section>
+
+    <!-- Network & Infrastructure -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">2. Network & Infrastructure</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Router:</strong> Ubiquiti UniFi Dream Machine Pro</li>
+        <li><strong>Switch:</strong> Netgear Smart Managed Switch (PoE-enabled)</li>
+        <li><strong>Access Points:</strong> Ubiquiti UniFi 6 Lite (2–3 units)</li>
+        <li><strong>Server:</strong> Windows Server 2022 (AD, DNS, DHCP, File Services)</li>
+        <li><strong>NAS:</strong> Synology DS920+ for backup and file storage</li>
+        <li><strong>UPS:</strong> Optional for power redundancy</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-6 mb-2">Network Structure</h3>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>VLAN 10: Office LAN (workstations)</li>
+        <li>VLAN 20: Servers</li>
+        <li>VLAN 30: VoIP and printers</li>
+        <li>VLAN 40: Guest Wi-Fi (isolated internet-only)</li>
+        <li>WLAN SSIDs: "Startup-Office" (internal) & "Startup-Guest" (guest access)</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-6 mb-2">Network Diagram</h3>
+      <img src="https://i.imgur.com/nHspoyJ.png" alt="Network Diagram" class="w-full rounded-lg shadow-md">
+      <p class="text-sm text-gray-500 mt-2">*Illustrative diagram of VLAN-based infrastructure with core components.</p>
+    </section>
+
+    <!-- Client Management -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">3. Client Management</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>OS: Windows 11 Pro, domain-joined</li>
+        <li>Standard Software: Microsoft 365, antivirus, PDF reader</li>
+        <li>Security: BitLocker encryption, automatic updates via WSUS/Intune</li>
+        <li>Software deployment via GPO or Microsoft Intune</li>
+      </ul>
+    </section>
+
+    <!-- Access Control -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">4. Access & Permissions</h2>
+      <p class="mb-4">
+        Users and groups are centrally managed via Active Directory. The organizational structure is reflected in Organizational Units (OUs) such as Sales, Marketing, IT, and Management. Each department has its own group policies and access rules.
+      </p>
+      <h3 class="text-xl font-semibold mb-2">OU Structure Example:</h3>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>OU=Company</li>
+        <li> ├── OU=Sales</li>
+        <li> ├── OU=Marketing</li>
+        <li> ├── OU=IT</li>
+        <li> └── OU=Management</li>
+      </ul>
+      <h3 class="text-xl font-semibold mt-4 mb-2">Permission Management:</h3>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Shared folders mapped via GPO per department</li>
+        <li>Access based on security groups (e.g., SG_Sales_Read, SG_IT_Admin)</li>
+        <li>GPOs for desktop restrictions, software policies, login scripts</li>
+      </ul>
+    </section>
+
+    <!-- Security & Backup -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">5. Backup & Cybersecurity</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Backup strategy: 3-2-1 rule (3 copies, 2 media types, 1 off-site)</li>
+        <li>Use of Synology NAS + encrypted cloud storage (e.g., Wasabi, Azure)</li>
+        <li>Automated daily and weekly backup schedules</li>
+        <li>Firewall with DPI, intrusion detection, and threat alerts</li>
+        <li>Company-wide MFA, strong password policies, regular security training</li>
+        <li>BitLocker for all endpoints, secure BIOS/UEFI settings</li>
+      </ul>
+    </section>
+
+    <!-- Monitoring -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">6. Support & Monitoring</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>IT helpdesk: GLPI or Spiceworks for ticket management</li>
+        <li>Remote access with AnyDesk or Microsoft Remote Desktop</li>
+        <li>Monitoring: PRTG Network Monitor for network/server performance</li>
+        <li>Log collection: Windows Event Viewer + centralized syslog</li>
+        <li>Automated alerts for CPU, disk, memory, and uptime issues</li>
+      </ul>
+    </section>
+
+    <!-- Demo Environment -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">7. Demo Environment</h2>
+      <p class="mb-2">
+        A fully functional demo lab has been set up on a Mac M1 using Parallels Desktop with Windows Server 2022. It includes:
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>AD DS installation and domain configuration</li>
+        <li>Sample OUs and user accounts</li>
+        <li>GPOs for desktop wallpaper and password policy</li>
+        <li>Optional: Windows 11 VM joined to the domain</li>
+      </ul>
+      <p class="mt-4">Screenshots and videos available upon request or during presentation.</p>
+    </section>
+  </main>
+
+  <footer class="bg-gray-200 text-center py-6 mt-10">
+    <p class="text-sm">Created by Mohammed Al-Abiad – Junior IT System Administrator</p>
+  </footer>
+</body>
+</html>
